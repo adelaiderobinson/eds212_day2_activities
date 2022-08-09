@@ -6,6 +6,7 @@ editor: visual
 
 ```{r}
 library(tidyverse)
+library(here)
 
 ```
 
@@ -38,3 +39,15 @@ class(df_1)
 class(df_1$species)
 max_count <- max(df_1$count)
 ```
+
+# Wild Data
+
+This data is for the
+
+```{r}
+mack_verts <- read_csv(here("data", "AS00601.csv"))
+```
+
+metadata: explains each column name and key
+
+https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-and.4027.14
