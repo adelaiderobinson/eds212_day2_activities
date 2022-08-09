@@ -6,6 +6,7 @@ editor: visual
 
 ```{r}
 library(tidyverse)
+library(here)
 
 ```
 
@@ -38,3 +39,5 @@ class(df_1)
 class(df_1$species)
 max_count <- max(df_1$count)
 ```
+
+# 
