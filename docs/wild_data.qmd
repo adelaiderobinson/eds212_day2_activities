@@ -22,8 +22,6 @@ mack_verts <- read_csv(here("data", "AS00601.csv")) %>% clean_names()
 
 metadata: explains each column name and key
 
-https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-and.4027.14
-
 ```{r}
 mc_wt_5 <- mack_verts$weight[5]
 mc_length_8_20 <- mack_verts$length1[seq(from = 8, to = 20, by = 1)]
@@ -33,7 +31,8 @@ mc_dates <- mack_verts$sampledate
 ```{r}
 salamander_subset <- mack_verts %>% filter(species == "DITE")
 
-salamander_plot <-ggplot(data = salamander_subset, aes(x = length1, y = weight)) +geom_point(color = "blue") +labs(title = "Salamander length vs Weight", x = "Weight (g)", y = "Snout-vent-length (mm)", caption = "https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-and.4027.14", subtitle = "Aquatic Vertebrate Population Study in Mack Creek, Andrews Experimental Forest, 1987 to present"  )
+salamander_plot <-ggplot(data = salamander_subset, aes(x = length1, y = weight)) +geom_point(color = "blue") +labs(title = "Salamander length vs Weight", x = "Weight (g)", y = "Snout-vent-length (mm)", caption = "https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-and.4027.14", subtitle = "Aquatic Vertebrate Population Study in Mack Creek") + theme(plot.title=element_text(hjust=0.5),
+        plot.subtitle=element_text(hjust=0.5), plot.caption = element_text(hjust=0.5))
 ggsave(plot = salamander_plot, here("figs", "salamanderplot.png"))
 salamander_plot
 
@@ -43,7 +42,8 @@ Cutthroat
 
 ```{r}
 cutthroat_subset <- mack_verts %>% filter(species == "ONCL")
-cutthroat_plot <- ggplot(data = cutthroat_subset, aes(x = length1, y = weight)) +geom_point(aes(color = reach)) +labs(title = "Cutthroat length vs Weight", x = "Weight (g)", y = "Length (mm)", caption = "https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-and.4027.14", subtitle = "Aquatic Vertebrate Population Study in Mack Creek, Andrews Experimental Forest, 1987 to present") +scale_colour_manual(values =c("blue", "green", "orange")) + facet_wrap(~reach)
+cutthroat_plot <- ggplot(data = cutthroat_subset, aes(x = length1, y = weight)) +geom_point(aes(color = reach)) +labs(title = "Cutthroat length vs Weight", x = "Weight (g)", y = "Snout-Fork Length (mm)", caption = "https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-and.4027.14", subtitle = "Aquatic Vertebrate Population Study in Mack Creek") + scale_colour_manual(values =c("blue", "green", "orange")) + facet_wrap(~reach) + theme(plot.title=element_text(hjust=0.5),
+        plot.subtitle=element_text(hjust=0.5), plot.caption = element_text(hjust=0.5))
 
 ggsave(plot = cutthroat_plot, here("figs", "cutthroatplot.png"))
 cutthroat_plot
